@@ -77,17 +77,21 @@ git add index.html git commit -m "Cambia los colores para la bandera de Italia"
 
 git add index.html git commit -m "Cambia los colores para la bandera de Francia"
 
-### Creamos una branch para italia
 
-#### Luego se repite para francia y alemania
+# Branches
+
+### Creamos una branch para italia
 
 git checkout -b italia
 
 git add index.html git commit -m "Crea la bandera de Italia en la rama italia"
 
 
+#### Luego se repite para francia y alemania
 
+### Para finalizar y saltar entre branches 
 
+git checkout italia
 
 #### Al hacer los commit me ha dado unos errores que ni con la ayuda de la IA no he sabido solucionar
 
