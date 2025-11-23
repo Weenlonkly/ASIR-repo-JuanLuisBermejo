@@ -1,0 +1,54 @@
+[
+  {
+    "cliente": {
+      "nombre": "Ana García",
+      "email": "ana.garcia@ejemplo.com",
+      "direccion": "Calle Falsa 123, Ciudad A"
+    },
+    "productos": [
+      {
+        "nombre": "Tarta de Chocolate",
+        "cantidad": 1,
+        "precio": 15
+      },
+      {
+        "nombre": "Brownie",
+        "cantidad": 3,
+        "precio": 8
+      }
+    ]
+  },
+  {
+    "cliente": {
+      "nombre": "Roberto Pérez",
+      "email": "roberto.perez@ejemplo.com",
+      "direccion": "Avenida Siempre Viva 45, Ciudad B"
+    },
+    "productos": [
+      {
+        "nombre": "Cheesecake",
+        "cantidad": 2,
+        "precio": 12
+      },
+      {
+        "nombre": "Tarta de Chocolate",
+        "cantidad": 1,
+        "precio": 15
+      }
+    ]
+  },
+  {
+    "cliente": {
+      "nombre": "Lucía Martínez",
+      "email": "lucia.m@ejemplo.com",
+      "direccion": "Plaza Central 7, Ciudad A"
+    },
+    "productos": [
+      {
+        "nombre": "Brownie",
+        "cantidad": 5,
+        "precio": 8
+      }
+    ]
+  }
+]

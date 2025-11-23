@@ -1,0 +1,17 @@
+[
+  {
+    "nombre": "Tarta de Chocolate",
+    "precio": 15,
+    "stock": 10
+  },
+  {
+    "nombre": "Cheesecake",
+    "precio": 12,
+    "stock": 5
+  },
+  {
+    "nombre": "Brownie",
+    "precio": 8,
+    "stock": 7
+  }
+]
