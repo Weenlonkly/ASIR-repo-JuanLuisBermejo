@@ -243,3 +243,41 @@ Host Mi_conexion
 # La conexion deveria estar completa
 
 ------------------------------------------------------------------------
+
+# instalacion de phpmyadmin
+
+#### Para la instalacion de phpmyadmin no se necesita nada previo pero es recomendable tener una base de datos para gestionas
+
+## Para instalar phpmyadmin se hace con el siguiente comando:
+
+sudo apt install phpmyadmin -y
+
+### Para ver  si ha sido instalado correctamente podemos ver si el servicio esta activo y la version
+
+systemctl status phpmyadmin
+
+### Si esta activo al entrar desde navegador
+
+http://IP_DEL_SERVIDOR/phpmyadmin
+
+### Abajo derecha sale la version
+
+------------------------------------------------------------------------
+
+# Instalacion de webmin
+
+## Para instalar webmin se hace con el siguiente comando:
+
+sudo apt install webmin -y
+
+### Para ver  si ha sido instalado correctamente podemos ver el status
+
+systemctl status webmin
+
+### Tambien hay que permitir el poerto de acceso de webmin
+
+sudo ufw allow 10000
+
+### una vez activo y permitido solo hay que acceder a el servicio mediante navegador
+
+https://IP_DEL_SERVIDOR:10000
