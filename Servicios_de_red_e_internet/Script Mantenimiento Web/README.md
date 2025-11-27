@@ -12,4 +12,22 @@ sudo crontab -e
 
 0 0 * * * /ruta/backup.sh
 
-## 
+## Darle permisos al script
+
+sudo chmod +x /var/www/copias_de_seguridad/backup.sh
+
+## Aun queda poder que pueda entrar en mysql
+
+### crear un nano que guarde la contraseña de root
+
+sudo nano /root/.my.cnf
+
+### copia esto dentro
+
+[client]
+user=root
+password=TU_PASSWORD
+
+ ### y dale permisos
+
+ sudo chmod 600 /root/.my.cnf
