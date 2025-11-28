@@ -37,14 +37,54 @@ Contraseña  Asir_2025
 
 
 
-# 2 Raspberry Servidora
+# 2 Raspberry Servidor
 
+## Instalar Prometheus
 
+sudo apt update sudo apt install prometheus
 
+### Editar el archivo prometheus.yml para añadir los nodos que se quieran monitorizar
 
+/etc/prometheus/prometheus.yml
 
+  - job_name: 'rpi-nodes'
+    static_configs:
+      - targets: ['192.168.1.193:9100', '192.168.1.160:9100']
 
+### Guardar y reiniciar el servidor
 
+sudo systemctl restart prometheus && sudo systemctl status prometheus
+
+### Comprobar que funciona correctamente desde el navegador
+
+http://192.168.1.121:9090
+
+## Instalar Grafana
+
+sudo apt install -y apt-transport-https software-properties-common
+sudo mkdir -p /etc/apt/keyrings/
+wget -q -O - https://packages.grafana.com/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/grafana.gpg
+echo "deb [signed-by=/etc/apt/keyrings/grafana.gpg] https://packages.grafana.com/oss/deb stable main" | sudo tee /etc/apt/sources.list.d/grafana.list
+sudo apt update
+sudo apt install grafana
+
+### Iniciar y habilitar grafana
+
+sudo systemctl enable grafana-server
+sudo systemctl start grafana-server
+
+### Acceder desde el navegador
+
+http://192.168.1.121:3000
+
+### Ponerle el nombre de usuario y contraseña por defectos
+
+admin/admin
+
+### Conectar Grafana con Prometheus
+
+Grafana → Data Sources → Prometheus
+http://192.168.1.121:9090
 
 # 3 Raspberry Cliente 
 
@@ -104,3 +144,14 @@ http://192.168.1.160:9100/metrics
 
 
 ### Lo que devuelve es una pagina en negro con un monton de metricas 
+
+# Errores que nos hemos encontrado durante la instalación
+
+1) En la guia original estaba este código el cual no funcionaba: sudo apt install -y apt-transport-https software-properties-common
+    Y lo sustituimos por este otro: sudo apt install -y apt-transport-https software-properties-common
+2) En el archivo de configuración prometheus.yml hay que añadir el código al final del archivo en lugar de sustituirlo, además que las ip debes ponerlas de esta forma: ['192.168.1.193:9100', '192.168.1.160:9100']
+Y en el documento aparece de esta otra forma:   - `'localhost:9100'`
+                                                - `'192.168.10.11:9100'`
+                                                - `'192.168.10.12:9100'`
+3) Intentar conectar desde internet con Prometheus poniendo ip diferentes a las del servidor
+
