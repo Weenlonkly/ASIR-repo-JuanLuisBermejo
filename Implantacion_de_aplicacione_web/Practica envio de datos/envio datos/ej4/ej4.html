@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ejercicioc4</title>
+</head>
+<body>
+
+<h1>Constructor de objetos</h1>
+<input id="entrada" type="text" maxlength="20" placeholder="Máx. 20 caracteres">
+<button id="btnInsertar">INSERTAR</button>
+
+<div id="mensaje"></div>
+
+<hr>
+
+<button id="btnEliminar">DESTRUIR ÚLTIMO</button>
+<button id="btnVaciar">DESTRUIR TODO</button>
+
+<hr>
+
+<h2>Elementos:</h2>
+<ul id="lista"></ul>
+
+<script>
+class Objeto {
+    constructor() {
+        this.elementos = [];
+    }
+
+    insertar(valor) {
+        if (!valor) throw "Campo vacío";
+        this.elementos.push(valor);
+        return `"${valor}" insertado`;
+    }
+
+    eliminar() {
+        if (!this.elementos.length) throw "Objeto vacío";
+        return `"${this.elementos.pop()}" destruido`;
+    }
+
+    vaciar() {
+        if (!this.elementos.length) throw "Objeto vacío";
+        this.elementos = [];
+        return "Todos destruidos";
+    }
+
+    obtenerElementos() {
+        return [...this.elementos].reverse();
+    }
+}
+
+class Interfaz {
+    constructor(objeto) {
+        this.objeto = objeto;
+
+        this.cajaTexto = document.getElementById("entrada");
+        this.mensaje = document.getElementById("mensaje");
+        this.lista = document.getElementById("lista");
+
+        document.getElementById("btnInsertar").onclick = () => this.insertarElemento();
+        document.getElementById("btnEliminar").onclick = () => this.eliminarElemento();
+        document.getElementById("btnVaciar").onclick = () => this.vaciarObjeto();
+    }
+
+    insertarElemento() {
+        try {
+            const texto = this.cajaTexto.value.trim();
+            const resultado = this.objeto.insertar(texto);
+            this.mostrarMensaje(resultado);
+            this.cajaTexto.value = "";
+            this.mostrarLista();
+        } catch (error) {
+            this.mostrarError(error);
+        }
+    }
+
+    eliminarElemento() {
+        try {
+            const resultado = this.objeto.eliminar();
+            this.mostrarMensaje(resultado);
+            this.mostrarLista();
+        } catch (error) {
+            this.mostrarError(error);
+        }
+    }
+
+    vaciarObjeto() {
+        try {
+            const resultado = this.objeto.vaciar();
+            this.mostrarMensaje(resultado);
+            this.mostrarLista();
+        } catch (error) {
+            this.mostrarError(error);
+        }
+    }
+
+    mostrarLista() {
+        this.lista.innerHTML = "";
+        this.objeto.obtenerElementos().forEach(elemento => {
+            this.lista.innerHTML += `<li>${elemento}</li>`;
+        });
+    }
+
+    mostrarMensaje(texto) {
+        this.mensaje.textContent = texto;
+    }
+
+    mostrarError(mensajeError) {
+        this.mensaje.textContent = "Error: " + mensajeError;
+        this.cajaTexto.focus();
+    }
+}
+
+// Crear aplicación
+new Interfaz(new Objeto());
+</script>
+
+</body>
+</html>
