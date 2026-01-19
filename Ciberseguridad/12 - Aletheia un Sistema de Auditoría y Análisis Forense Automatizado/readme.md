@@ -312,6 +312,7 @@ file_put_contents($logDir . "activity.log",
 header("Location: result.php?f=" . urlencode($reportName));
 
 
+
 ## 18 Crea la página de resultados result.php
 
 sudo nano /var/www/forense-ai/result.php
